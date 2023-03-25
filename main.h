@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAINN_H
 
+#include <unistd.h>
+#include <stdlib.h>
 #include <stdarg.h>
 
 /* utils.c */
