@@ -1,8 +1,5 @@
 #include "main.h"
 
-#include <stdio.h>
-#include <stdarg.h>
-
 /**
  * _printf - Produces output according to a format
  * @format: Is a character string. The format string
@@ -12,37 +9,23 @@
  * the null byte used to end output to strings)
  **/
 
-int _printf(const char *format, ...) {
-    va_list args;
-    va_start(args, format);
+int _printf(const char *format, ...)
+{
+	int size;
+	va_list args;
 
-    int count = 0;
+	if (format == NULL)
+		return (-1);
 
-    while (*format != '\0') {
-        if (*format == '%') {
-            format++;
-            if (*format == 'c') {
-                int c = va_arg(args, int);
-                putchar(c);
-                count++;
-            } else if (*format == 's') {
-                char *s = va_arg(args, char*);
-                while (*s != '\0') {
-                    putchar(*s);
-                    s++;
-                    count++;
-                }
-            } else if (*format == '%') {
-                putchar('%');
-                count++;
-            }
-        } else {
-            putchar(*format);
-            count++;
-        }
-        format++;
-    }
+	size = _strlen(format);
+	if (size <= 0)
+		return (0);
 
-    va_end(args);
-    return count;
+	va_start(args, format);
+	size = handler(format, args);
+
+	_putchar(-1);
+	va_end(args);
+
+	return (size);
 }
