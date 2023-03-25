@@ -10,44 +10,21 @@
  **/
 int _printf(const char *format, ...)
 {
-	{
-	int count = 0;
+	int size;
 	va_list args;
-	int (*function)(va_list) = NULL;
+
+	if (format == NULL)
+		return (-1);
+
+	size = _strlen(format);
+	if (size <= 0)
+		return (0);
 
 	va_start(args, format);
+	size = handler(format, args);
 
-	while (*format)
-	{
-		if (*format == '%' && *(format + 1) != '%')
-		{
-			format++;
-			function = get_function(format);
-			if (*(format) == '\0')
-				return (-1);
-			else if (function == NULL)
-			{
-				_putchar(*(format - 1));
-				_putchar(*format);
-				count += 2;
-			}
-			else
-				count += function(args);
-		}
-		else if (*format == '%' && *(format + 1) == '%')
-		{
-			format++;
-			_putchar('%');
-			count++;
-		}
-		else
-		{
-			_putchar(*format);
-			count++;
-		}
-
-		format++;
-	}
+	_putchar(-1);
 	va_end(args);
-	return (count);
+
+	return (size);
 }
