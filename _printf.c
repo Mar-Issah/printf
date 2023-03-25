@@ -1,4 +1,6 @@
 #include "main.h"
+
+#include <stdio.h>
 #include <stdarg.h>
 
 /**
@@ -9,23 +11,38 @@
  * Return: The number of characters printed (excluding
  * the null byte used to end output to strings)
  **/
-int _printf(const char *format, ...)
-{
-	int size;
-	va_list args;
 
-	if (format == NULL)
-		return (-1);
+int _printf(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
 
-	size = _strlen(format);
-	if (size <= 0)
-		return (0);
+    int count = 0;
 
-	va_start(args, format);
-	size = handler(format, args);
+    while (*format != '\0') {
+        if (*format == '%') {
+            format++;
+            if (*format == 'c') {
+                int c = va_arg(args, int);
+                putchar(c);
+                count++;
+            } else if (*format == 's') {
+                char *s = va_arg(args, char*);
+                while (*s != '\0') {
+                    putchar(*s);
+                    s++;
+                    count++;
+                }
+            } else if (*format == '%') {
+                putchar('%');
+                count++;
+            }
+        } else {
+            putchar(*format);
+            count++;
+        }
+        format++;
+    }
 
-	_putchar(-1);
-	va_end(args);
-
-	return (size);
+    va_end(args);
+    return count;
 }
