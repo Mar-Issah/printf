@@ -1,30 +1,36 @@
 #include "main.h"
 
 /**
- * _printf - Produces output according to a format
- * @format: Is a character string. The format string
- * is composed of zero or more directives
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
  *
- * Return: The number of characters printed (excluding
- * the null byte used to end output to strings)
- **/
-int _printf(const char *format, ...)
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
 {
-	int size;
-	va_list args;
+	return (buffer(c));
+}
 
-	if (format == NULL)
-		return (-1);
+/**
+ * buffer - Save the character in a buffer
+ * @c: Character
+ *
+ * Return: 1
+ **/
+int buffer(char c)
+{
+	static char buffering[1024];
+	static int i;
 
-	size = _strlen(format);
-	if (size <= 0)
-		return (0);
+	if (c == -1 || i == 1024)
+	{
+		write(1, buffering, i);
+		i = 0;
+	}
 
-	va_start(args, format);
-	size = handler(format, args);
+	if (c != -1)
+		buffering[i++] = c;
 
-	_putchar(-1);
-	va_end(args);
-
-	return (size);
+	return (1);
 }
