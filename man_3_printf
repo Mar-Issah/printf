@@ -1,0 +1,9 @@
+./" This is _printf manpage
+.TH man 3 "25 March 2023" "1.0" "_printf man page"
+.SH NAME
+.B _printf
+- format and data.
+.SH SYNOPSIS
+_printf FORMAT [ARGUMENT]...
+.SH DESCRIPTION
+Print ARGUMENT(s) according to FORMAT:
