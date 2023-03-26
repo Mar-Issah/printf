@@ -12,21 +12,47 @@
 
 int _printf(const char *format, ...)
 {
-	int size;
-	va_list args;
+	  va_list args;
+    va_start(args, format);
 
-	if (format == NULL)
-		return (-1);
+    int count = 0;
 
-	// size = _strlen(format);
-	// if (size <= 0)
-	// 	return (0);
+    while (*format != '\0')
+		{
+        if (*format == '%')
+				{
+            format++;
+            if (*format == 'c')
+						{
+                int c = va_arg(args, int);
 
-	// va_start(args, format);
-	// size = handler(format, args);
+                _putchar(c);
+                count++;
+            }
+						else if (*format == 's')
+						{
+                char *s = va_arg(args, char*);
+                while (*s != '\0')
+								{
+                    _putchar(*s);
+                    s++;
+                    count++;
+                }
+            }
+						else if (*format == '%')
+						{
+                _putchar('%');
+                count++;
+            }
+        }
+				else
+				{
+            _putchar(*format);
+            count++;
+        }
+        format++;
+    }
 
-	_putchar(-1);
-	va_end(args);
-
-	return (size);
+    va_end(args);
+    return (count);
 }
