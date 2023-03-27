@@ -44,6 +44,6 @@ You might want to look at the gcc flag -Wno-format when testing with your _print
 
 Authors:
 
-[Nwoha Martins](https://github.com/martinsmind)
+[Marsiya Issah](https://github.com/mar-issah)
 
-[Ebrahim Mangera](https://github.com/EbrahimM78)
+[Odwori](https://github.com/Odwori1)
