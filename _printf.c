@@ -1,58 +1,49 @@
 #include "main.h"
-#include <stddef.h>
 
 /**
- * _printf - Produces output according to a format
- * @format: Is a character string. The format string
- * is composed of zero or more directives
+ * _printf - prints anything according to a format
+ * @format: the format string
  *
- * Return: The number of characters printed (excluding
- * the null byte used to end output to strings)
- **/
-
+ * Return: number of bytes printed
+ */
 int _printf(const char *format, ...)
 {
-	  va_list args;
-    va_start(args, format);
+	int sum = 0;
+	va_list ap;
+	char *p, *start;
+	params_t params = PARAMS_INIT;
 
-    int count = 0;
+	va_start(ap, format);
 
-    while (*format != '\0')
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = (char *)format; *p; p++)
+	{
+		init_params(&params, ap);
+		if (*p != '%')
 		{
-        if (*format == '%')
-				{
-            format++;
-            if (*format == 'c')
-						{
-                int c = va_arg(args, int);
-
-                _putchar(c);
-                count++;
-            }
-						else if (*format == 's')
-						{
-                char *s = va_arg(args, char*);
-                while (*s != '\0')
-								{
-                    _putchar(*s);
-                    s++;
-                    count++;
-                }
-            }
-						else if (*format == '%')
-						{
-                _putchar('%');
-                count++;
-            }
-        }
-				else
-				{
-            _putchar(*format);
-            count++;
-        }
-        format++;
-    }
-
-    va_end(args);
-    return (count);
+			sum += _putchar(*p);
+			continue;
+		}
+		start = p;
+		p++;
+		while (get_flag(p, &params)) /* while char at p is flag char */
+		{
+			p++; /* next char */
+		}
+		p = get_width(p, &params, ap);
+		p = get_precision(p, &params, ap);
+		if (get_modifier(p, &params))
+			p++;
+		if (!get_specifier(p))
+			sum += print_from_to(start, p,
+				params.l_modifier || params.h_modifier ? p - 1 : 0);
+		else
+			sum += get_print_func(p, ap, &params);
+	}
+	_putchar(BUF_FLUSH);
+	va_end(ap);
+	return (sum);
 }

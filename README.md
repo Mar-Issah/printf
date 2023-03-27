@@ -1,28 +1,49 @@
-## printf
-printf is the C language function to do formatted printing. The same function is also available in PERL.
-
-### Simple Printing
-- `Naturally Special Characters`
-- `Alternately Special Characters`
-
-### Format Specifications
-- `The Argument List`
-- `Percent`
-- `The Width Option`
-- `Filling the Extra Space`
-- `The Justify Option`
-- `The Zero-Fill Option`
-- `Fun With Plus Signs`
-- `The Invisible Plus Sign`
-- `Plus, Space, and Zero`
-
-### Printing Strings
-
-### Floating Point
-
-## What is a Flowchart?
-A flowchart is a type of diagram that visually represents a workflow or process using a set of symbols or icons to denote different actions/decisions/steps within the process with arrows showing the direction of the flow. Flowcharts are used across many different professions to help analyze, design, document, and/or manage a workflow or process.
+# printf
 
 
-## Technical writing
-Technical writing is an invaluable skill and an excellent way to articulate and share your knowledge. It’s not enough to just be able to code; being able to explain the concepts behind the code proves deeper understanding as well as the ability to communicate with others.
+In this project, we'll learn to work collaboratively using GitHub to create a printf function.
+
+
+# We are allowed to use these functions or macros only:
+
+
+Description
+
+The _printf() function produces output according to a format which is described below. This function write its output to the stdout, the standard output. Returns the count of printed characters when the function is successful The available convertion specifiers are:
+
+
+%c: Prints a single character.
+
+%s: Prints a string of characters.
+
+%d: Prints integers.
+
+%i: Prints integers.
+
+%b: Prints the binary representation of an unsigned decimal.
+
+%u: Prints unsigned integers
+
+%x: Prints the hexadecial representation of an unsigned decimal in lowercase letters
+
+%X:Prints the hexadecial representation of an unsigned decimal in uppercase letters
+
+%r: Prints a reversed string
+
+
+# Compilation
+
+
+Note
+
+The code is compiles using: gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c
+
+As a consequence, be careful not to push any c file containing a main function in the root directory of your project (you could have a test folder containing all your tests files including main functions)
+
+You might want to look at the gcc flag -Wno-format when testing with your _printf and the standard printf
+
+Authors:
+
+[Nwoha Martins](https://github.com/martinsmind)
+
+[Ebrahim Mangera](https://github.com/EbrahimM78)
