@@ -1,4 +1,4 @@
-.TH _PRINTF 3 "april 15 2022" "0.1" "ALX  - _printf"
+.TH _PRINTF
 
 .SH NAME
 .B _printf\fR \- formatted output conversion
@@ -229,9 +229,9 @@ int main(void)
 
 	char *street = "Mission St.";
 
-	char *city = "San Francisco",
+	char *city = "Accra",
 
-	char *state = "CA";
+	char *state = "GA";
 
 	printf("%d %s, %s, %s, %d\\n", 972, street, city, state, 94103);
 
@@ -242,7 +242,7 @@ To print the result of basic mathematical operations prepended by signs and
 all numbers printed with a minimum precision of two digits:
 
 .RS
-#include "holberton.h"
+#include "main.h"
 
 int main(void)
 
@@ -281,4 +281,4 @@ The \fB_printf()\fR function emulates functionality of the C standard library
 function \fBprintf()\fR. This man page borrows from the corresponding Linux 
 man page printf(3).
 
-.SH AUTHOR Gideon Ateji and Eri Adeodu
+.SH AUTHOR Marsiya Issah and Odwori
